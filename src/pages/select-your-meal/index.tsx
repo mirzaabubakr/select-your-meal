@@ -13,7 +13,6 @@ export default function SelectYourMeal() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchCart());
-    console.log("asdsd");
   }, []);
 
   return (

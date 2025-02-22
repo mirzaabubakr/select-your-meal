@@ -1,10 +1,14 @@
+import { MealItemsListDetailProps } from "@/types/mealTypes";
 import MealItemDetailCard from "./MealItemDetailCard";
 
-export default function MealItemCard({ mealItem, categoryRefs }: any) {
+export default function MealItemCard({
+  mealItem,
+  categoryRefs,
+}: MealItemsListDetailProps) {
   return (
     <div
       className="flex flex-col pt-[50px] gap-2.5"
-      ref={(el: any) => {
+      ref={(el) => {
         categoryRefs.current[mealItem.category] = el;
       }}
       data-category={mealItem.category}
@@ -24,7 +28,7 @@ export default function MealItemCard({ mealItem, categoryRefs }: any) {
           Select
         </span>
       </div>
-      {mealItem.items.map((meal: any, index: any) => (
+      {mealItem.items.map((meal, index) => (
         <MealItemDetailCard meal={meal} key={index} />
       ))}
     </div>

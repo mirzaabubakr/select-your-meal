@@ -2,18 +2,26 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 import { Button } from "../ui/button";
 import { RootState } from "@/states/store";
 import { removeCartItem, toggleCartItem } from "@/states/reducers/cartSlice";
+import { MealItemDetailCardProps } from "@/types/mealTypes";
 
-export default function AddRemoveMealButton({ mealItem }: any) {
+export default function AddRemoveMealButton({ meal }: MealItemDetailCardProps) {
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state: RootState) => state.cart);
-  const isInCart = cart.some((item: any) => item.name === mealItem.name);
+  const isInCart = cart.some(
+    (item: { name: string }) => item.name === meal.name
+  );
 
   const handleAddToCart = () => {
-    dispatch(toggleCartItem({ item: mealItem, checked: true }));
+    dispatch(
+      toggleCartItem({
+        item: { ...meal, id: meal.id.toString() },
+        checked: true,
+      })
+    );
   };
 
   const handleRemoveFromCart = () => {
-    dispatch(removeCartItem({ name: mealItem.name }));
+    dispatch(removeCartItem({ name: meal.name }));
   };
 
   return (

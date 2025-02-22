@@ -1,7 +1,9 @@
+import { SelectedItemDetailCardProps } from "@/types/mealTypes";
+
 export default function SelectedItemDetailCard({
   item,
   handleRemoveCartItem,
-}: any) {
+}: SelectedItemDetailCardProps) {
   return (
     <div
       className={`w-full border-b border-b-[#E0E8E4] pb-2.5 flex items-center justify-between`}

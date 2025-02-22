@@ -1,7 +1,8 @@
 import { ViewMealItemDialog } from "../dialogs/ViewMealItemDialog";
 import MealItemCheckbox from "../checkbox/MealItemCheckbox";
+import { MealItemDetailCardProps } from "@/types/mealTypes";
 
-export default function MealItemDetailCard({ meal }: any) {
+export default function MealItemDetailCard({ meal }: MealItemDetailCardProps) {
   return (
     <div className=" space-y-3.5">
       <div
@@ -35,8 +36,8 @@ export default function MealItemDetailCard({ meal }: any) {
               {meal.description}
             </span>
             <div className="flex items-center justify-between gap-4">
-              <ViewMealItemDialog mealItem={meal} />
-              <MealItemCheckbox mealItem={meal} />
+              <ViewMealItemDialog meal={meal} />
+              <MealItemCheckbox meal={meal} />
             </div>
           </div>
         </div>

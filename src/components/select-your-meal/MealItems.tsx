@@ -1,12 +1,20 @@
 import { useCallback, useEffect, useState } from "react";
 
+interface MealItemsProps {
+  categories: string[];
+  onCategoryClick: (category: string) => void;
+  selectedCategory: string | null;
+  emblaRef: (element: HTMLElement | null) => void;
+  emblaApi: any;
+}
+
 export default function MealItems({
   categories,
   onCategoryClick,
   selectedCategory,
   emblaRef,
   emblaApi,
-}: any) {
+}: MealItemsProps) {
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 

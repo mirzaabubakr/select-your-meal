@@ -4,9 +4,12 @@ import SelectedItemDetailCard from "./SelectedItemDetailCard";
 import { RootState } from "@/states/store";
 import { removeCartItem } from "@/states/reducers/cartSlice";
 import { useMemo } from "react";
+import { MealItem, SelectedItemsCardProps } from "@/types/mealTypes";
 
-export default function SelectedItemsCard({ restaurant }: any) {
-  const cart: any = useAppSelector((state: RootState) => state.cart);
+export default function SelectedItemsCard({
+  restaurant,
+}: SelectedItemsCardProps) {
+  const cart: MealItem[] = useAppSelector((state: RootState) => state.cart);
   const dispatch = useAppDispatch();
 
   const handleRemoveCartItem = (name: string) => {
@@ -14,7 +17,7 @@ export default function SelectedItemsCard({ restaurant }: any) {
   };
 
   const totalPrice = useMemo(() => {
-    return cart.reduce((total: any, item: any) => total + item.price, 0);
+    return cart.reduce((total, item) => total + item.price, 0);
   }, [cart]);
 
   return (
@@ -42,7 +45,7 @@ export default function SelectedItemsCard({ restaurant }: any) {
           <Button
             onClick={() =>
               window.open(
-                `https://www.google.com/maps?q=${restaurant?.location?.lat},${restaurant?.location?.lng}`,
+                `https://www.google.com/maps?q=${restaurant?.location?.coordinates?.lat},${restaurant?.location?.coordinates?.lng}`,
                 "_blank"
               )
             }
@@ -60,7 +63,7 @@ export default function SelectedItemsCard({ restaurant }: any) {
       </div>
       {cart.length > 0 && (
         <div className="flex p-3 flex-col gap-2.5 overflow-y-auto max-h-[calc(50vh-300px)] no-scrollbar">
-          {cart.map((item: any, index: any) => (
+          {cart.map((item, index) => (
             <SelectedItemDetailCard
               item={item}
               key={index}

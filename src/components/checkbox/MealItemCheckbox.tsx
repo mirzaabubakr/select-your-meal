@@ -2,26 +2,19 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 import { Checkbox } from "../ui/checkbox";
 import { RootState } from "@/states/store";
 import { toggleCartItem } from "@/states/reducers/cartSlice";
+import { MealItemDetailCardProps } from "@/types/mealTypes";
 
-interface MealItem {
-  id: string;
-  name: string;
-  price: number;
-  rating: number;
-  image: string;
-  description: string;
-}
-
-interface MealItemCheckboxProps {
-  mealItem: MealItem;
-}
-
-export default function MealItemCheckbox({ mealItem }: MealItemCheckboxProps) {
+export default function MealItemCheckbox({ meal }: MealItemDetailCardProps) {
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state: RootState) => state.cart);
-  const isChecked = cart.some((item: any) => item.name === mealItem.name);
+  const isChecked = cart.some((item: any) => item.name === meal.name);
   const handleCheckboxChange = () => {
-    dispatch(toggleCartItem({ item: mealItem, checked: !isChecked }));
+    dispatch(
+      toggleCartItem({
+        item: { ...meal, id: meal.id.toString() },
+        checked: !isChecked,
+      })
+    );
   };
 
   return (

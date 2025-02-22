@@ -7,8 +7,9 @@ import {
 import { EyeIcon, XIcon } from "lucide-react";
 import AddRemoveMealButton from "../buttons/AddRemoveMealButton";
 import { EmblaCarousel } from "../carousel/EmblaCarosel";
+import { MealItemDetailCardProps } from "@/types/mealTypes";
 
-export function ViewMealItemDialog({ mealItem }: any) {
+export function ViewMealItemDialog({ meal }: MealItemDetailCardProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -22,25 +23,25 @@ export function ViewMealItemDialog({ mealItem }: any) {
           <i className="fi fi-sr-heart text-white text-sm inline-block leading-none"></i>
         </div>
         <div className="relative h-[250px]">
-          <EmblaCarousel images={mealItem.mealImages} />
+          <EmblaCarousel images={meal.mealImages} />
         </div>
         <div className="flex flex-col px-5 pt-9">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-base leading-5 text-black">
-              {mealItem?.name}
+              {meal?.name}
             </h3>
             <span className="font-semibold text-customGreen text-sm leading-5 tracking-normal flex items-center justify-center gap-0.5">
-              {mealItem?.rating}
+              {meal?.rating}
               <i className="fi fi-sr-star text-customGreen text-xs h-3 inline-block leading-none"></i>
             </span>
           </div>
           <span className="font-semibold text-customBlue text-sm leading-[18px] pt-2.5 tracking-normal">
-            {`AED ${mealItem?.price}`}
+            {`AED ${meal?.price}`}
           </span>
           <span className="font-normal text-xs leading-[18px] pt-6 tracking-normal text-descGray">
-            {mealItem?.description}
+            {meal?.description}
           </span>
-          <AddRemoveMealButton mealItem={mealItem} />
+          <AddRemoveMealButton meal={meal} />
         </div>
       </DialogContent>
     </Dialog>

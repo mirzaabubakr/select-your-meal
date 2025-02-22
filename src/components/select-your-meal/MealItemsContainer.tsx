@@ -9,7 +9,7 @@ import useEmblaCarousel from "embla-carousel-react";
 
 export default function MealItemsContainer() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const categoryRefs = useRef<any>({});
+  const categoryRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const [emblaRef, emblaApi] = useEmblaCarousel({
     containScroll: "trimSnaps",
     align: "start",
@@ -34,11 +34,15 @@ export default function MealItemsContainer() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const category: any = entry.target.getAttribute("data-category");
-            setSelectedCategory(category);
-            if (emblaApi) {
-              const index = Object.keys(categoryRefs.current).indexOf(category);
-              if (index !== -1) emblaApi.scrollTo(index);
+            const category = entry.target.getAttribute("data-category");
+            if (category) {
+              setSelectedCategory(category);
+              if (emblaApi) {
+                const index = Object.keys(categoryRefs.current).indexOf(
+                  category
+                );
+                if (index !== -1) emblaApi.scrollTo(index);
+              }
             }
           }
         });
@@ -46,12 +50,12 @@ export default function MealItemsContainer() {
       { threshold: 0.5 }
     );
 
-    Object.values(categoryRefs.current).forEach((ref: any) => {
+    Object.values(categoryRefs.current).forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
     return () => {
-      Object.values(categoryRefs.current).forEach((ref: any) => {
+      Object.values(categoryRefs.current).forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };
@@ -82,7 +86,6 @@ export default function MealItemsContainer() {
             <MealItemsList
               data={data.mealsData.data}
               categoryRefs={categoryRefs}
-              selectedCategory={selectedCategory}
             />
           </div>
           <SelectedItemsCard restaurant={data.mealsData.restaurant} />
