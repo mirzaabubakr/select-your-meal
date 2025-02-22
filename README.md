@@ -1,46 +1,36 @@
-# KYC UI
+# Select Your Meal
 
-## Overview
+## Description
 
-KYC UI is a user interface for the Know Your Customer (KYC) process. It provides a seamless and intuitive experience for users to submit their identification documents and information for verification.
-
-## Features
-
-- User-friendly interface for submitting KYC documents
-- Real-time validation of input fields
-- Secure handling of user data
+Select Your Meal is a web application that allows users to browse, select, and order meals from a variety of restaurants. The application provides an easy-to-use interface for users to find their favorite meals and place orders quickly.
 
 ## Installation
 
-To get started with the KYC UI, follow these steps:
+To set up the project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/mirzaabubakr/kyc-ui.git
+   git clone https://github.com/mirzaabubakr/select-your-meal.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd kyc-ui
+   cd select-your-meal
    ```
 3. Install the dependencies:
-
    ```bash
    npm install
-
    ```
-
-4. add .env as specified in .env.sample:
 
 ## Usage
 
-To run the application locally, use the following command:
+To start the application, run the following command:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-This will start the development server and you can view the application in your browser at `http://localhost:3000`.
+This will start the development server
 
 ## Scripts
 
